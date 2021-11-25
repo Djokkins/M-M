@@ -26,8 +26,8 @@ public class TopDownPlayerMovement : MonoBehaviour
         {
             Debug.Log("'e' was pressed");
             CheckInteraction();
-
         }
+
     }
 
 
@@ -58,6 +58,7 @@ public class TopDownPlayerMovement : MonoBehaviour
 
         if(hits.Length > 0)
         {
+
             foreach(RaycastHit2D rc in hits)
             {
                 if(rc.transform.GetComponent<Interactable>())
@@ -71,11 +72,13 @@ public class TopDownPlayerMovement : MonoBehaviour
 
     public void OpenInteractableIcon()
     {
+        Debug.Log("InteractIcon is true");
         interactIcon.SetActive(true);
     }
 
         public void CloseInteractableIcon()
     {
+        Debug.Log("InteractIcon is false");
         interactIcon.SetActive(false);
     }
     
@@ -86,7 +89,5 @@ public class TopDownPlayerMovement : MonoBehaviour
         // Go back to start screen
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
-
-
 
 }

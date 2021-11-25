@@ -10,9 +10,12 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalMove = 0f;
 
+    private int Health;
+
     // Start is called before the first frame update
     void Start()
     {
+        Health = FindObjectOfType<Stats>().Health;
         
     }
 
