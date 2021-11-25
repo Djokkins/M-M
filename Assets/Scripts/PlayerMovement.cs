@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Health = FindObjectOfType<Stats>().Health;
+        // Health = FindObjectOfType<Stats>().Health;
         
     }
     
