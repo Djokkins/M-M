@@ -6,7 +6,7 @@ public class Stats : MonoBehaviour
 {
 
     public int Health;
-    public bool BigDick;
+    public bool BigDick = false;
     
     // Start is called before the first frame update
     void Start()
