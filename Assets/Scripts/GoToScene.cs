@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 // No idea if this is necessary
 // [RequireComponent(typeof(int))]
-public class EnterHouse : Interactable
+public class GoToScene : Interactable
 {
     public override void Interact()
     {
