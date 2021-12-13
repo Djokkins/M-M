@@ -23,8 +23,13 @@ public class TopDownPlayerMovement : MonoBehaviour
         ProcessInputs();
 
         float speedx = Input.GetAxisRaw("Horizontal");
+        float speedy = Input.GetAxisRaw("Vertical");
+        
+        animator.SetFloat("Horizontal", speedx);
+        animator.SetFloat("Vertical", speedy);
 
-        if (speedx != 0) { 
+        Debug.Log("Speed x =" + speedx + ", speed y = " + speedy);
+        if (speedx != 0 || speedy != 0) { 
         animator.SetBool("isRunning", true);
         }
         else
