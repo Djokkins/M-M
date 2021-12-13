@@ -9,14 +9,14 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (input.GetKeyDown(KeyCode.K))
-        //{
-         //   Attack1();
-        //}
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Attack1();
+        }
 
     }
     void Attack1()
     {
-       // animator.setTrigger("Attack1");
+        animator.SetTrigger("Attack1");
     }
 }
