@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class TopDownPlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
-    public Rigidbody2D rb; 
+    public Rigidbody2D rb;
+    public Animator animator;
+   
 
     private Vector2 moveDirection;
 
@@ -20,7 +22,15 @@ public class TopDownPlayerMovement : MonoBehaviour
     {
         ProcessInputs();
 
-        if(Input.GetKeyDown("q")) {BackToMainMenu();}
+        float speedx = Input.GetAxisRaw("Horizontal");
+
+        if (speedx != 0) { 
+        animator.SetBool("isRunning", true);
+        }
+        else
+            animator.SetBool("isRunning", false);
+
+        if (Input.GetKeyDown("q")) {BackToMainMenu();}
 
         if(Input.GetKeyDown(KeyCode.E))
         {
@@ -42,11 +52,13 @@ public class TopDownPlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        
         moveDirection = new Vector2(moveX, moveY).normalized;
     }
-
+    
     void Move()
     {
+        
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
     }
 
@@ -91,3 +103,4 @@ public class TopDownPlayerMovement : MonoBehaviour
     }
 
 }
+
