@@ -25,12 +25,31 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        
+
+        if (horizontalMove != 0)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else animator.SetBool("isRunning", false);
+
+
         if (Input.GetButtonDown("Jump"))
         {jump = true;} 
         
         if (Input.GetButtonDown("Crouch"))
         {crouch = true;}
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            animator.SetTrigger("Attack1");
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            animator.SetTrigger("Attack2");
+        }
+
+
+
     }
 
     // Moving the character function
