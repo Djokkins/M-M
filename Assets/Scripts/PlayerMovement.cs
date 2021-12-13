@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
-    public float runSpeed = 40f;
+    private float runSpeed = 200f;
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
@@ -32,10 +32,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else animator.SetBool("isRunning", false);
 
-
         if (Input.GetButtonDown("Jump"))
-        {jump = true;} 
-        
+        {
+            Debug.Log("We got here Ayyy");
+            jump = true;
+        } 
+
         if (Input.GetButtonDown("Crouch"))
         {crouch = true;}
 
