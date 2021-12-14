@@ -58,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
             }
             else { 
                 horizontalMove = rollSpeed * direction;
-                Debug.Log("We still rolloing boiii");
             }
         }
         else
@@ -73,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
             }
             else { 
                 horizontalMove = rollSpeed * direction;
-                Debug.Log("We still rolloing boiii");
             }
 
         }
