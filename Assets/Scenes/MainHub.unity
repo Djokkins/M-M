@@ -296,7 +296,7 @@ EdgeCollider2D:
   - {x: 12.152969, y: 0.96343184}
   - {x: 13.192144, y: 3.0074587}
   - {x: 13.148569, y: 3.5809083}
-  - {x: 11.576961, y: 4.2577043}
+  - {x: 13.065268, y: 4.882793}
   - {x: 11.579784, y: 5.2749076}
   - {x: 12.518037, y: 7.278277}
   - {x: 11.381352, y: 7.3136063}
@@ -1378,5 +1378,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GM
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8599852905095954178, guid: c6423645ac5b8554eb9331d996dfee2c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c6423645ac5b8554eb9331d996dfee2c, type: 3}
