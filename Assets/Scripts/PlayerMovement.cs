@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
-    public int attackDamage = 40;
+    public int attack1Damage = 30;
+    public int attack2Damage = 17;
 
     private float runSpeed = 200f;
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
-    private bool attacking = false;
     private bool run = false;
 
 
@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
 
     private int Health;
+    private int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
