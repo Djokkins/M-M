@@ -21,23 +21,23 @@ public class TopDownPlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
-
+        
         float speedx = Input.GetAxisRaw("Horizontal");
         float speedy = Input.GetAxisRaw("Vertical");
         
         animator.SetFloat("Horizontal", speedx);
         animator.SetFloat("Vertical", speedy);
 
-        Debug.Log("Speed x =" + speedx + ", speed y = " + speedy);
+        //Debug.Log("Speed x =" + speedx + ", speed y = " + speedy);
         if (speedx != 0 || speedy != 0) { 
         animator.SetBool("isRunning", true);
         }
         else
             animator.SetBool("isRunning", false);
 
-        if (Input.GetKeyDown("q")) {BackToMainMenu();}
+        if (Input.GetKeyDown(KeyCode.Q)) {BackToMainMenu();}
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log("'e' was pressed");
             CheckInteraction();
