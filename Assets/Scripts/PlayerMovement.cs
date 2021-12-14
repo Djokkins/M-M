@@ -6,16 +6,24 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
+    public int attackDamage = 40;
 
     private float runSpeed = 200f;
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
     private bool run = false;
+
+
     public Transform attackPoint1;
-    public Transform attackPoint2;
     public float attackRange1 = 0.5f;
+    public float attackSpeed1 = 1.5f;
+
+    public Transform attackPoint2;
     public float attackRange2 = 0.6f;
+    public float attackSpeed2 = 2f;
+
+    float nextAttack = 0f;
     
     public LayerMask enemyLayers;
 
@@ -74,16 +82,21 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch"))
         {crouch = true;}
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Attack1();
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Attack2();
-        }
 
+        if (Time.time >= nextAttack)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                Attack1();
+                nextAttack = Time.time + (1f / attackSpeed1);
+            }
 
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                Attack2();
+                nextAttack = Time.time + (1f / attackSpeed2);
+            }
+        }
 
     }
 
@@ -108,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
         //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
         foreach (Collider2D enemy in enemiesHit)
         {
+            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             Debug.Log("We hit" + enemy.name);
         }
 
