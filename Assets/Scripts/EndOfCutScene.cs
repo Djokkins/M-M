@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class EndOfCutScene : MonoBehaviour
 {
+
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+        {
+            OnEnable();
+        }
+    }
+
     void OnEnable() 
     {
         Debug.Log("The cutscene has ended");

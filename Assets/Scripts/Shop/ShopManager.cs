@@ -14,10 +14,14 @@ public class ShopManager : MonoBehaviour
     public ShopTemplate[] shopPanels;   // Shop template script
     public Button[] myPurchaseBtns;
 
+    // public StaticData staticData;
 
     // Start is called before the first frame update
     void Start()
     {
+        // GameObject gObject = GameObject.Find("StaticData");
+        // staticData = gObject.GetComponent<StaticData>();
+
         for (int i = 0; i < shopItemSO.Length; i++)
             shopPanelsGO[i].SetActive(true);
         LoadPanels();
@@ -56,7 +60,9 @@ public class ShopManager : MonoBehaviour
             coins = coins - shopItemSO[btnNo].baseCost;     // Not messing with '-=' as that is some predefined subscriber pattern shit
             coinUI.text = "Coins: " + coins.ToString();
             CheckPurchaseable();
-            // TODO: Unlock item 
+            Debug.Log("Purchased item: " + shopItemSO[btnNo].title);
+
+            PlayerPrefs.SetInt("PlayerHealth", (PlayerPrefs.GetInt("PlayerHealth") + 10));
         }
     }
 
