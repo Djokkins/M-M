@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    private bool attacking = false;
     private bool run = false;
 
 
@@ -28,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask enemyLayers;
 
     private int Health;
-    public int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Input.GetKey(KeyCode.LeftShift))
         {
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * 1.5f;
@@ -51,51 +51,60 @@ public class PlayerMovement : MonoBehaviour
             horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
             run = false;
         }
+        
+        handleAnimations();
+    }
 
-
-        if(horizontalMove != 0)
+    public void handleAnimations()
+    {
+        if (horizontalMove != 0)
         {
-            if (run) {
+            if (run)
+            {
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
             }
-            else {
+            else
+            {
                 animator.SetBool("isWalking", true);
                 animator.SetBool("isRunning", false);
             }
         }
-        else {
-            //Debug.Log("Idle");
+        else
+        {
             animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false); 
+            animator.SetBool("isRunning", false);
         }
-
-
 
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
             animator.SetBool("isJumping", true);
-        } 
+        }
 
-
+        
         if (Input.GetButtonDown("Crouch"))
-        {crouch = true;}
+        { crouch = true; }
 
 
         if (Time.time >= nextAttack)
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
             {
                 Attack1();
                 nextAttack = Time.time + (1f / attackSpeed1);
             }
 
-            if (Input.GetKeyDown(KeyCode.L))
+            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
             {
                 Attack2();
                 nextAttack = Time.time + (1f / attackSpeed2);
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetTrigger("isRolling");
         }
 
     }
@@ -123,9 +132,9 @@ public class PlayerMovement : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
             Debug.Log("We hit" + enemy.name);
-        }
-
+            }
     }
+
 
     public void onLanding()
     {
@@ -140,15 +149,5 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
         crouch = false;
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if(attackPoint1 == null)
-        {
-            return;
-        }
-        Gizmos.DrawWireSphere(attackPoint1.position, attackRange1);
-        Gizmos.DrawWireSphere(attackPoint2.position, attackRange2);
-    }
-
+    
 }
