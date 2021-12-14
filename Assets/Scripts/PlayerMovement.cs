@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    private bool attacking = false;
     private bool run = false;
 
     private int Health;
@@ -25,47 +26,61 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (attacking)
         {
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * 1.5f;
-            run = true;
+            horizontalMove = 0.0f;
         }
-        else
-        {
-            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-            run = false;
+        else { 
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * 1.5f;
+                run = true;
+            }
+            else
+            {
+                horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+                run = false;
+            }
         }
 
 
-        if(horizontalMove != 0)
+
+
+
+        handleAnimations();
+    }
+
+    public void handleAnimations()
+    {
+        if (horizontalMove != 0)
         {
-            if (run) {
+            if (run)
+            {
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
             }
-            else {
+            else
+            {
                 animator.SetBool("isWalking", true);
                 animator.SetBool("isRunning", false);
             }
         }
-        else {
+        else
+        {
             Debug.Log("Nothing");
             animator.SetBool("isWalking", false);
-            animator.SetBool("isRunning", false); 
+            animator.SetBool("isRunning", false);
         }
-
-
 
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
             animator.SetBool("isJumping", true);
-        } 
+        }
 
 
         if (Input.GetButtonDown("Crouch"))
-        {crouch = true;}
+        { crouch = true; }
 
         if (Input.GetKeyDown(KeyCode.K))
         {
@@ -76,8 +91,10 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack2");
         }
 
-
-
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            animator.SetTrigger("isRolling");
+        }
     }
 
 
