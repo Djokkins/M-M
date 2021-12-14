@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    public Animator animator;
-    public int attack1Damage = 30;
+    private Animator animator;
+    public int attack1Damage = 32;
     public int attack2Damage = 17;
 
     private float runSpeed = 200f;
@@ -116,7 +116,13 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Attack1");
 
         //Detect enemies in range
-        Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
+        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
+        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+        foreach (Collider2D enemy in enemiesHit)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
+            Debug.Log("We hit" + enemy.name);
+        }
     }
     public void Attack2()
     {
@@ -131,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
         foreach (Collider2D enemy in enemiesHit)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
             Debug.Log("We hit" + enemy.name);
             }
     }
