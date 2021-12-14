@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    private Animator animator;
+    public Animator animator;
+
     public int attack1Damage = 32;
     public int attack2Damage = 17;
 
