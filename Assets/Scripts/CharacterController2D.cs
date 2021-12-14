@@ -51,10 +51,8 @@ public class CharacterController2D : MonoBehaviour
 		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
-			Debug.Log("We get in the loop");
 			if (colliders[i].gameObject != gameObject)
 			{
-				Debug.Log("Grounded = " + m_Grounded);
 				m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
@@ -125,7 +123,6 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 		}
-		Debug.Log("Grounded = " + m_Grounded);
 		// If the player should jump...
 		if (m_Grounded && jump)
 		{

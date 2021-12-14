@@ -1218,8 +1218,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1436768661}
-  m_Layer: 0
-  m_Name: groundcheck
+  m_Layer: 3
+  m_Name: groundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1233,7 +1233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1436768660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.99, z: 0}
+  m_LocalPosition: {x: 0, y: -0.558, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1695742933}
@@ -1256,7 +1256,7 @@ GameObject:
   - component: {fileID: 1695742938}
   - component: {fileID: 1695742939}
   - component: {fileID: 1695742940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1322,7 +1322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1695742931}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.12, y: 2, z: 0}
+  m_LocalPosition: {x: -5.86, y: -1.99, z: 0}
   m_LocalScale: {x: 2.956091, y: 2.9042974, z: 0.15042056}
   m_Children:
   - {fileID: 1436768661}
@@ -1375,7 +1375,19 @@ MonoBehaviour:
   m_CrouchDisableCollider: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1695742938}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: onLanding
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnCrouchEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1392,9 +1404,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0059476183, y: -0.09142822}
+  m_Offset: {x: 0, y: -0.24}
   serializedVersion: 2
-  m_Radius: 0.4900329
+  m_Radius: 0.30421507
 --- !u!61 &1695742937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1408,7 +1420,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06245011, y: -0.058006644}
+  m_Offset: {x: 0, y: 0.068695635}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1419,7 +1431,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.72674024, y: 1.0129229}
+  m_Size: {x: 0.6230053, y: 0.66403264}
   m_EdgeRadius: 0
 --- !u!114 &1695742938
 MonoBehaviour:
@@ -1476,8 +1488,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2094812685}
-  m_Layer: 0
-  m_Name: ceilingcheck
+  m_Layer: 3
+  m_Name: ceilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1491,7 +1503,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094812684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.03, z: 0}
+  m_LocalPosition: {x: 0.01, y: 0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1695742933}

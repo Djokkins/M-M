@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove = 0f;
     bool jump = false;
     bool crouch = false;
+    private bool run = false;
 
     private int Health;
 
@@ -24,19 +25,44 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-        if (horizontalMove != 0)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            animator.SetBool("isRunning", true);
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * 1.5f;
+            run = true;
         }
-        else animator.SetBool("isRunning", false);
+        else
+        {
+            horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            run = false;
+        }
+
+
+        if(horizontalMove != 0)
+        {
+            if (run) {
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", true);
+            }
+            else {
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isRunning", false);
+            }
+        }
+        else {
+            Debug.Log("Nothing");
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false); 
+        }
+
+
 
         if (Input.GetButtonDown("Jump"))
         {
-            Debug.Log("We got here Ayyy");
             jump = true;
+            animator.SetBool("isJumping", true);
         } 
+
 
         if (Input.GetButtonDown("Crouch"))
         {crouch = true;}
@@ -54,6 +80,13 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+
+    public void onLanding()
+    {
+        animator.SetBool("isJumping", false);
+    }
+
+
     // Moving the character function
     void FixedUpdate()
     {
@@ -61,5 +94,5 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
         crouch = false;
     }
-
+    
 }
