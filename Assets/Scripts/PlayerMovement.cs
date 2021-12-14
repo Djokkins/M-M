@@ -12,8 +12,15 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool crouch = false;
     private bool run = false;
+    public Transform attackPoint1;
+    public Transform attackPoint2;
+    public float attackRange1 = 0.5f;
+    public float attackRange2 = 0.6f;
+    
+    public LayerMask enemyLayers;
 
     private int Health;
+    public int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         else {
-            Debug.Log("Nothing");
+            //Debug.Log("Idle");
             animator.SetBool("isWalking", false);
             animator.SetBool("isRunning", false); 
         }
@@ -69,17 +76,42 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            animator.SetTrigger("Attack1");
+            Attack1();
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            animator.SetTrigger("Attack2");
+            Attack2();
         }
 
 
 
     }
 
+    private void Attack1()
+    {
+        //Animation for slow attack
+        animator.SetTrigger("Attack1");
+
+        //Detect enemies in range
+        Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
+    }
+    public void Attack2()
+    {
+        //Animation for quick attack
+        animator.SetTrigger("Attack2");
+
+
+        //Detect enemies in range
+        Collider2D [] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
+        Debug.Log("We attack" + count_debug);
+        count_debug++;
+        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+        foreach (Collider2D enemy in enemiesHit)
+        {
+            Debug.Log("We hit" + enemy.name);
+        }
+
+    }
 
     public void onLanding()
     {
@@ -94,5 +126,15 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
         crouch = false;
     }
-    
+
+    private void OnDrawGizmosSelected()
+    {
+        if(attackPoint1 == null)
+        {
+            return;
+        }
+        Gizmos.DrawWireSphere(attackPoint1.position, attackRange1);
+        Gizmos.DrawWireSphere(attackPoint2.position, attackRange2);
+    }
+
 }
