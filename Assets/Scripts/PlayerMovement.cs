@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
+    public int attack1Damage = 32;
+    public int attack2Damage = 17;
+
     private float runSpeed = 200f;
     private float rollSpeed = 450f;
     float horizontalMove = 0f;
@@ -17,7 +20,21 @@ public class PlayerMovement : MonoBehaviour
     private bool run = false;
     private float direction = 1;
 
+
+    public Transform attackPoint1;
+    public float attackRange1 = 0.5f;
+    public float attackSpeed1 = 1.5f;
+
+    public Transform attackPoint2;
+    public float attackRange2 = 0.6f;
+    public float attackSpeed2 = 2f;
+
+    float nextAttack = 0f;
+    
+    public LayerMask enemyLayers;
+
     private int Health;
+    private int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -98,9 +115,22 @@ public class PlayerMovement : MonoBehaviour
 
             
         }
+        
         if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
+
+        if (Time.time >= nextAttack)
         {
-            animator.SetTrigger("Attack2");
+            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
+            {
+                Attack1();
+                nextAttack = Time.time + (1f / attackSpeed1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
+            {
+                Attack2();
+                nextAttack = Time.time + (1f / attackSpeed2);
+            }
         }
 
         
@@ -116,6 +146,39 @@ public class PlayerMovement : MonoBehaviour
             isRolling = false;
         }
 
+
+    }
+
+    private void Attack1()
+    {
+        //Animation for slow attack
+        animator.SetTrigger("Attack1");
+
+        //Detect enemies in range
+        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
+        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+        foreach (Collider2D enemy in enemiesHit)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
+            Debug.Log("We hit" + enemy.name);
+        }
+    }
+    public void Attack2()
+    {
+        //Animation for quick attack
+        animator.SetTrigger("Attack2");
+
+
+        //Detect enemies in range
+        Collider2D [] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
+        Debug.Log("We attack" + count_debug);
+        count_debug++;
+        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+        foreach (Collider2D enemy in enemiesHit)
+        {
+            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
+            Debug.Log("We hit" + enemy.name);
+            }
     }
 
 

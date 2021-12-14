@@ -6,19 +6,35 @@ using UnityEngine.SceneManagement;
 public class StaticData : MonoBehaviour
 {
 
+    public static StaticData Instance;
+
     public int Health = 0;
     public bool BigDick = false;
     
     void Awake() {
-        DontDestroyOnLoad(this.gameObject);
+
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        GameObject.DontDestroyOnLoad(this.gameObject);
     }
 
 
     void Update()
     {
+        if(Input.GetKeyDown("9"))
+        {
+            Debug.Log("This bich still alive!!!!!: " + PlayerPrefs.GetInt("PlayerHealth"));
+        }
+
+
         if(Input.GetKeyDown("0"))
         {
-            Debug.Log("This bich still alive!!!!!: " + Health);
+            setHealth(10);
         }
 
         GetPressedNumber();
