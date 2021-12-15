@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
   m_Name: Boots of Swiftness
   m_EditorClassIdentifier: 
-  title: 
-  description: 
-  baseCost: 0
+  title: Boots of Swiftness
+  description: Will make you run faster
+  baseCost: 120
   itemImg: {fileID: 0}

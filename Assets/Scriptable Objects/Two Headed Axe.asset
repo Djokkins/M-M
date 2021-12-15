@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
   m_Name: Two Headed Axe
   m_EditorClassIdentifier: 
-  title: 
-  description: 
-  baseCost: 0
-  itemImg: {fileID: 0}
+  id: 
+  title: Battle Axe
+  description: A two-headed axe meant for battle
+  baseCost: 250
+  itemImg: {fileID: 21300000, guid: b125473115762614792ee348a17fc8fd, type: 3}
+  prefab: {fileID: 0}
