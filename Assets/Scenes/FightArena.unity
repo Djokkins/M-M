@@ -1471,7 +1471,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 3
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1496,7 +1496,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   m_GroundCheck: {fileID: 1436768661}
   m_CeilingCheck: {fileID: 2094812685}
-  m_CrouchDisableCollider: {fileID: 0}
+  m_CrouchDisableCollider: {fileID: 1695742937}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1530,7 +1530,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.24}
   serializedVersion: 2
-  m_Radius: 0.30421507
+  m_Radius: 0.32
 --- !u!61 &1695742937
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1544,7 +1544,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.068695635}
+  m_Offset: {x: 0, y: 0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1613,7 +1613,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a1c240a17e89d4eb27aa87bd8abf7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!1 &2094812684
 GameObject:
   m_ObjectHideFlags: 0

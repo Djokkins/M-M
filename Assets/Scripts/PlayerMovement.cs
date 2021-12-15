@@ -10,11 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public int attack1Damage = 32;
     public int attack2Damage = 18;
 
-    private float runSpeed = 200f;
+    private float runSpeed = 100f;
     private float rollSpeed = 450f;
     float horizontalMove = 0f;
     bool jump = false;
-    bool crouch = false;
     bool isRolling = false;
     private bool attacking = false;
     private bool run = false;
@@ -57,8 +56,9 @@ public class PlayerMovement : MonoBehaviour
                 horizontalMove = input * runSpeed * 1.5f;
                 run = true;
             }
-            else
+            else { 
                 horizontalMove = rollSpeed * direction;
+            }
         }
         else
         {
@@ -70,8 +70,9 @@ public class PlayerMovement : MonoBehaviour
                 horizontalMove = input * runSpeed;
                 run = false;
             }
-            else
+            else { 
                 horizontalMove = rollSpeed * direction;
+            }
 
         }
         
@@ -117,6 +118,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (Time.time >= nextAttack)
+        if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
         {
             if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
             {
@@ -189,10 +191,8 @@ public class PlayerMovement : MonoBehaviour
     // Moving the character function
     void FixedUpdate()
     {
-        //Debug.Log("rolling = " + isRolling);
         controller.Move(horizontalMove * Time.fixedDeltaTime, isRolling, jump);
         jump = false;
-        crouch = false;
     }
     
 }
