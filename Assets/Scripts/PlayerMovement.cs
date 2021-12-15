@@ -110,23 +110,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch"))
         { crouch = true; }
 
-        if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
-        {
-            animator.SetTrigger("Attack1");
 
-            
-        }
-
-        if (Time.time >= nextAttack)
         if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
         {
-            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
+            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
             {
                 Attack1();
                 nextAttack = Time.time + (1f / attackSpeed1);
             }
 
-            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
+            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
             {
                 Attack2();
                 nextAttack = Time.time + (1f / attackSpeed2);
@@ -160,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in enemiesHit)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
-            Debug.Log("We hit" + enemy.name);
+            Debug.Log("We hit " + enemy.name + " with hard attack");
         }
     }
     public void Attack2()
