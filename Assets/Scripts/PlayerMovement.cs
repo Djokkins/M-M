@@ -7,29 +7,29 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
-    public int attack1Damage = 32;
-    public int attack2Damage = 18;
+    private float dmgMult;
+    private float attack1Damage;
+    private float attack2Damage;
 
-    private float runSpeed = 100f;
-    private float rollSpeed = 450f;
-    float horizontalMove = 0f;
-    bool jump = false;
-    bool isRolling = false;
-    private bool attacking = false;
-    private bool crouch = false;
-    private bool run = false;
-    private float direction = 1;
+    private float runSpeed;
+    private float rollSpeed;
+    float horizontalMove;
+    bool jump;
+    bool isRolling;
+    private bool attacking;
+    private bool run;
+    private float direction;
 
-
+    private float aSpeedMult;
     public Transform attackPoint1;
-    public float attackRange1 = 0.5f;
-    public float attackSpeed1 = 1.5f;
+    private float attackRange1;
+    private float attackSpeed1;
 
     public Transform attackPoint2;
-    public float attackRange2 = 0.6f;
-    public float attackSpeed2 = 2f;
+    private float attackRange2;
+    private float attackSpeed2;
 
-    float nextAttack = 0f;
+    float nextAttack;
     
     public LayerMask enemyLayers;
 
@@ -39,9 +39,38 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initializing variables
+        //ad variables
+        dmgMult = 1f;
+        attack1Damage = 32 * dmgMult;
+        attack2Damage = 18 * dmgMult;
+
+        //as variables
+        aSpeedMult = 1f;
+        attackRange1 = 0.5f * aSpeedMult;
+        attackSpeed1 = 1.5f * aSpeedMult;
+
+        attackRange2 = 0.6f;
+        attackSpeed2 = 2f;
+
+        nextAttack = 0f;
+
+        //movement variables
+        runSpeed = 100f;
+        rollSpeed = 450f;
+        horizontalMove = 0f;
+        jump = false;
+        isRolling = false;
+        attacking = false;
+        run = false;
+        direction = 1;
+
+
+
+
         // Health = FindObjectOfType<Stats>().Health;
-        
-    }
+
+}
     
     // Update is called once per frame
     void Update()
@@ -108,8 +137,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
-        if (Input.GetButtonDown("Crouch"))
-        { crouch = true; }
+        //if (Input.GetButtonDown("Crouch"))
+        //{ crouch = true; }
 
 
 

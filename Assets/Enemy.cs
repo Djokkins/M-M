@@ -7,15 +7,16 @@ public class Enemy : MonoBehaviour
 {
     public Animator animator;
 
-    public int maxHealth = 100;
-    int currentHealth;
+    public float maxHealth;
+    float currentHealth;
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = 100f;
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         animator.SetTrigger("gotHit");
