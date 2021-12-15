@@ -542,7 +542,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 751039143}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: fec680d8e9d4d4249a15acfc1870b9dd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1571,14 +1571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1695742935}
   animator: {fileID: 1695742939}
-  attack1Damage: 30
-  attack2Damage: 17
   attackPoint1: {fileID: 176949221}
-  attackRange1: 1.49
-  attackSpeed1: 1.5
   attackPoint2: {fileID: 276467906}
-  attackRange2: 1.53
-  attackSpeed2: 2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 1024
