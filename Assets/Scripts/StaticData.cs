@@ -20,7 +20,7 @@ public class StaticData : MonoBehaviour
         }
 
         Instance = this;
-        GameObject.DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 
 

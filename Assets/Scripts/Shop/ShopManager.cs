@@ -73,7 +73,11 @@ public class ShopManager : MonoBehaviour
         {
             shopPanels[i].titleTxt.text         = shopItemSO[i].title;
             shopPanels[i].descriptionTxt.text   = shopItemSO[i].description;
-            shopPanels[i].costTxt.text          = shopItemSO[i].baseCost.ToString();
+            string Coin = "<sprite=0>";
+            // TMP_SpriteAsset TMP_coin;
+            // TMP_coin.GetSpriteIndexFromName("coin");
+
+            shopPanels[i].costTxt.text          = shopItemSO[i].baseCost.ToString() + Coin;
         }
     }
 
