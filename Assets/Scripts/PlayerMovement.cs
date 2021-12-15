@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     bool jump = false;
     bool isRolling = false;
     private bool attacking = false;
+    private bool crouch = false;
     private bool run = false;
     private float direction = 1;
 
@@ -111,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
         { crouch = true; }
 
 
+
         if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
         {
             if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
@@ -153,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in enemiesHit)
         {
             enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
-            Debug.Log("We hit " + enemy.name + " with hard attack");
+            Debug.Log("We hit" + enemy.name);
         }
     }
     public void Attack2()
