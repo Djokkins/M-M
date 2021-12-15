@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public int attack1Damage = 32;
-    public int attack2Damage = 17;
+    public int attack2Damage = 18;
 
     private float runSpeed = 200f;
     private float rollSpeed = 450f;
@@ -115,18 +115,16 @@ public class PlayerMovement : MonoBehaviour
 
             
         }
-        
-        if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
 
         if (Time.time >= nextAttack)
         {
-            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
+            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
             {
                 Attack1();
                 nextAttack = Time.time + (1f / attackSpeed1);
             }
 
-            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
+            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
             {
                 Attack2();
                 nextAttack = Time.time + (1f / attackSpeed2);
