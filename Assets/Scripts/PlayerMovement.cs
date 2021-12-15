@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private float rollSpeed = 450f;
     float horizontalMove = 0f;
     bool jump = false;
+    bool isJumping = false;
     bool isRolling = false;
     private bool attacking = false;
     private bool crouch = false;
@@ -105,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
             animator.SetBool("isJumping", true);
+            isJumping = true;
         }
 
         
@@ -113,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll"))
+        if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping)
         {
             if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
             {
@@ -180,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
     public void onLanding()
     {
         animator.SetBool("isJumping", false);
+        isJumping = false;
     }
 
 
