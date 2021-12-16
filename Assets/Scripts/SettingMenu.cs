@@ -13,6 +13,7 @@ public class SettingMenu : MonoBehaviour
 
     private void Start()
     {
+
         //Get the list of resolutions and add it to our dropdown menu
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
