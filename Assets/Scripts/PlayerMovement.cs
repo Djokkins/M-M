@@ -4,22 +4,27 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    //Creating variables
+    //Controller and animator
     public CharacterController2D controller;
     public Animator animator;
-
+    //ad variables
     private float dmgMult;
     private float attack1Damage;
     private float attack2Damage;
 
+    //movement variables
     private float runSpeed;
     private float rollSpeed;
     float horizontalMove;
     bool jump;
     bool isRolling;
-    private bool attacking;
     private bool run;
+    private bool isJumping;
     private float direction;
 
+    //as variables
     private float aSpeedMult;
     public Transform attackPoint1;
     private float attackRange1;
@@ -28,32 +33,32 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPoint2;
     private float attackRange2;
     private float attackSpeed2;
-
     float nextAttack;
-    
+
+    //Resource externalization
+    PlayerDamage damage;
+  
     public LayerMask enemyLayers;
 
-    private int Health;
-    private int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         //initializing variables
         //ad variables
-        dmgMult = 1f;
-        attack1Damage = 32 * dmgMult;
-        attack2Damage = 18 * dmgMult;
+        //dmgMult = 1f;
+        //attack1Damage = 9 * dmgMult;
+        //attack2Damage = 5 * dmgMult;
 
-        //as variables
-        aSpeedMult = 1f;
-        attackRange1 = 0.5f * aSpeedMult;
-        attackSpeed1 = 1.5f * aSpeedMult;
+        ////as variables
+        //aSpeedMult = 1f;
+        //attackRange1 = 0.5f * aSpeedMult;
+        //attackSpeed1 = 1.5f * aSpeedMult;
 
-        attackRange2 = 0.6f;
-        attackSpeed2 = 2f;
+        //attackRange2 = 0.6f;
+        //attackSpeed2 = 2f;
 
-        nextAttack = 0f;
+        //nextAttack = 0f;
 
         //movement variables
         runSpeed = 100f;
@@ -61,14 +66,12 @@ public class PlayerMovement : MonoBehaviour
         horizontalMove = 0f;
         jump = false;
         isRolling = false;
-        attacking = false;
         run = false;
         direction = 1;
+        isJumping = false;
 
+        damage = animator.GetComponent<PlayerDamage>();
 
-
-
-        // Health = FindObjectOfType<Stats>().Health;
 
 }
     
@@ -143,18 +146,16 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping)
+        if (/*Time.time >= nextAttack && */!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping)
         {
             if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
             {
-                Attack1();
-                nextAttack = Time.time + (1f / attackSpeed1);
+                damage.Attack1();
             }
 
             if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
             {
-                Attack2();
-                nextAttack = Time.time + (1f / attackSpeed2);
+                damage.Attack2();
             }
         }
 
@@ -174,37 +175,37 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void Attack1()
-    {
-        //Animation for slow attack
-        animator.SetTrigger("Attack1");
+    //private void Attack1()
+    //{
+    //    //Animation for slow attack
+    //    animator.SetTrigger("Attack1");
 
-        //Detect enemies in range
-        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
-        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
-        foreach (Collider2D enemy in enemiesHit)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
-            Debug.Log("We hit" + enemy.name);
-        }
-    }
-    public void Attack2()
-    {
-        //Animation for quick attack
-        animator.SetTrigger("Attack2");
+    //    //Detect enemies in range
+    //    Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
+    //    //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+    //    foreach (Collider2D enemy in enemiesHit)
+    //    {
+    //        enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
+    //        Debug.Log("We hit" + enemy.name);
+    //    }
+    //}
+    //public void Attack2()
+    //{
+    //    //Animation for quick attack
+    //    animator.SetTrigger("Attack2");   
 
 
-        //Detect enemies in range
-        Collider2D [] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
-        Debug.Log("We attack" + count_debug);
-        count_debug++;
-        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
-        foreach (Collider2D enemy in enemiesHit)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
-            Debug.Log("We hit" + enemy.name);
-            }
-    }
+    //    //Detect enemies in range
+    //    Collider2D [] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
+    //    Debug.Log("We attack" + count_debug);
+    //    count_debug++;
+    //    //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
+    //    foreach (Collider2D enemy in enemiesHit)
+    //    {
+    //        enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
+    //        Debug.Log("We hit" + enemy.name);
+    //        }
+    //}
 
 
     public void onLanding()
