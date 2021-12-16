@@ -21,10 +21,11 @@ public class TopDownPlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
+        Debug.Log("Were in update");
         
         float speedx = Input.GetAxisRaw("Horizontal");
         float speedy = Input.GetAxisRaw("Vertical");
-
+        
         animator.SetFloat("Horizontal", speedx);
         animator.SetFloat("Vertical", speedy);
 
@@ -32,9 +33,8 @@ public class TopDownPlayerMovement : MonoBehaviour
         if (speedx != 0 || speedy != 0) { 
         animator.SetBool("isRunning", true);
         }
-        else { 
+        else
             animator.SetBool("isRunning", false);
-        }
 
         if (Input.GetKeyDown(KeyCode.Q)) {BackToMainMenu();}
 
@@ -49,7 +49,6 @@ public class TopDownPlayerMovement : MonoBehaviour
 
     void FixedUpdate() 
     {
-        Debug.Log("We get fixed updates");
         Move();
     }
 
@@ -106,7 +105,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     void BackToMainMenu()
     {
         // Go back to start screen
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
 }
