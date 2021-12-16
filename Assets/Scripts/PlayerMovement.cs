@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     bool isJumping;
     private bool attacking;
     private bool run;
-    private bool isJumping;
     private float direction;
 
     //as variables
