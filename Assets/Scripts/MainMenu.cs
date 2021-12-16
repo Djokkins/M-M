@@ -23,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        Debug.Log("THis is a test");
         if (cutScenePlayed)
         {
             SceneManager.LoadScene("MainHub");
