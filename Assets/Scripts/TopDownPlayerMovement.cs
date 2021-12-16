@@ -21,6 +21,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     void Update()
     {
         ProcessInputs();
+        Debug.Log("Were in update");
         
         float speedx = Input.GetAxisRaw("Horizontal");
         float speedy = Input.GetAxisRaw("Vertical");

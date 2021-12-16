@@ -9,10 +9,12 @@ public class ShopManager : MonoBehaviour
 {
     public int coins;
     public TMP_Text coinUI;
-    public ShopItemSO[] shopItemSO;     // List of all the items in the shop
+    public ItemSO[] shopItemSO;     // List of all the items in the shop
     public GameObject[] shopPanelsGO;   // The shop panels themselves
     public ShopTemplate[] shopPanels;   // Shop template script
     public Button[] myPurchaseBtns;
+
+    private string CoinSprite = "<sprite=0>"; // The coin sprite for the text
 
     // public StaticData staticData;
 
@@ -25,7 +27,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < shopItemSO.Length; i++)
             shopPanelsGO[i].SetActive(true);
         LoadPanels();
-        coinUI.text = "Coins: " + coins.ToString();
+        UpdateCoinUI();
         CheckPurchaseable();
     }
 
@@ -38,7 +40,7 @@ public class ShopManager : MonoBehaviour
     public void AddCoins()
     {
         coins += 10;
-        coinUI.text = "Coins: " + coins.ToString();
+        UpdateCoinUI();
         CheckPurchaseable();
     }
 
@@ -58,7 +60,7 @@ public class ShopManager : MonoBehaviour
         if (coins >= shopItemSO[btnNo].baseCost)
         {
             coins = coins - shopItemSO[btnNo].baseCost;     // Not messing with '-=' as that is some predefined subscriber pattern shit
-            coinUI.text = "Coins: " + coins.ToString();
+            UpdateCoinUI();
             CheckPurchaseable();
             Debug.Log("Purchased item: " + shopItemSO[btnNo].title);
 
@@ -73,13 +75,14 @@ public class ShopManager : MonoBehaviour
         {
             shopPanels[i].titleTxt.text         = shopItemSO[i].title;
             shopPanels[i].descriptionTxt.text   = shopItemSO[i].description;
-            string Coin = "<sprite=0>";
-            // TMP_SpriteAsset TMP_coin;
-            // TMP_coin.GetSpriteIndexFromName("coin");
-
-            shopPanels[i].costTxt.text          = shopItemSO[i].baseCost.ToString() + Coin;
+            shopPanels[i].costTxt.text          = shopItemSO[i].baseCost.ToString() + CoinSprite;
         }
     }
+
+    private void UpdateCoinUI(){
+        coinUI.text = "Coins: " + coins.ToString() + CoinSprite;
+    }
+
 
 
     public void BackToHub()

@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     float horizontalMove;
     bool jump;
     bool isRolling;
+    bool isJumping;
+    private bool attacking;
     private bool run;
     private bool isJumping;
     private float direction;
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         jump = false;
         isRolling = false;
         run = false;
+        isJumping = false;
         direction = 1;
         isJumping = false;
 
