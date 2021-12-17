@@ -43,16 +43,16 @@ public class enemy_walk : StateMachineBehaviour
         {
             animator.SetBool("isRunning", true);
         }
-
         if (Vector2.Distance(player.position, rb.position) <= 5f)
         {
             animator.SetTrigger("Attack1");
-        } 
+        }
     }
 
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        speed = 0f;
         animator.ResetTrigger("Attack1");
     }
 

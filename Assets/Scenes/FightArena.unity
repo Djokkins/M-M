@@ -1544,8 +1544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDamage: 20
   enragedAttackDamage: 40
-  attackOffset: {x: -3, y: -2, z: 0}
-  attackRange: 2.5
+  attackOffset: {x: -3, y: -2.5, z: 0}
+  attackRange: 1.75
   playerMask:
     serializedVersion: 2
     m_Bits: 1048576
