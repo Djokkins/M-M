@@ -6,9 +6,9 @@ public class enemy_walk : StateMachineBehaviour
 {
 
     private Transform player;
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
 
-    Enemy enemy;
+    private Enemy enemy;
 
     private float speed;
 
@@ -17,8 +17,8 @@ public class enemy_walk : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         speed = 1.5f;
+        
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
         rb = animator.GetComponent<Rigidbody2D>();
         enemy = animator.GetComponent<Enemy>();
 
@@ -32,13 +32,14 @@ public class enemy_walk : StateMachineBehaviour
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
         //Enrage effect below 50% health
-        if (animator.GetComponent<Enemy>().getCurrentHealth() <= 50f)
+        if (enemy.getCurrentHealth() <= 50f)
         {
             Debug.Log("Enemy current health 2= " + (animator.GetComponent<Enemy>().getCurrentHealth()));
             animator.SetBool("isRunning", true);
         }
-        else if (Vector2.Distance(player.position, rb.position) <= 5f)
+        if ((Vector2.Distance(player.position, rb.position) <= 5f) && animator.GetBool("isWalking"))
         {
+            speed = 0f;
             Debug.Log("Enemy current health = " + (animator.GetComponent<Enemy>().getCurrentHealth()));
             rb.MovePosition(rb.position);
             animator.SetTrigger("Attack1");

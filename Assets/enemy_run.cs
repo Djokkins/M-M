@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class enemy_run : StateMachineBehaviour
 {
-    Transform player;
-    Rigidbody2D rigidBody;
-    Enemy enemyRun;
+    private Transform player;
+    private Rigidbody2D rigidBody;
+    private Enemy enemyRun;
 
-    private float speed;
+    private float speedRun;
     //onstateenter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
-        speed = 2f;
-        
+        Debug.Log("We entered enemy_run");
+        speedRun = 5f;
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rigidBody = animator.GetComponent<Rigidbody2D>();
         enemyRun = animator.GetComponent<Enemy>();
@@ -25,13 +26,13 @@ public class enemy_run : StateMachineBehaviour
     {
         enemyRun.ChasePlayer();
         Vector2 target = new Vector2(player.position.x, rigidBody.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rigidBody.position, target, speed * Time.fixedDeltaTime);
+        Vector2 newPos = Vector2.MoveTowards(rigidBody.position, target, speedRun * Time.fixedDeltaTime);
         rigidBody.MovePosition(newPos);
 
         if ((Vector2.Distance(player.position, rigidBody.position) <= 5f) && animator.GetBool("isRunning"))
         {
+            speedRun = 0f;
             Debug.Log("We shouldnt be here");
-            rigidBody.MovePosition(rigidBody.position);
             animator.SetTrigger("Attack2");
         }
     }
@@ -39,7 +40,7 @@ public class enemy_run : StateMachineBehaviour
     //onstateexit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
-        speed = 0f;
+        speedRun = 0f;
         animator.ResetTrigger("Attack2");
         animator.SetBool("isRunning", false);
     }
