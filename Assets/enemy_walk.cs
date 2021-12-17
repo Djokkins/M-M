@@ -37,7 +37,7 @@ public class enemy_walk : StateMachineBehaviour
             Debug.Log("Enemy current health 2= " + (animator.GetComponent<Enemy>().getCurrentHealth()));
             animator.SetBool("isRunning", true);
         }
-        if ((Vector2.Distance(player.position, rb.position) <= 5f) && animator.GetBool("isWalking"))
+        if (Vector2.Distance(player.position, rb.position) <= 5f)
         {
             speed = 0f;
             Debug.Log("Enemy current health = " + (animator.GetComponent<Enemy>().getCurrentHealth()));

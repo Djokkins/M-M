@@ -13,7 +13,7 @@ public class enemy_run : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
         Debug.Log("We entered enemy_run");
-        speedRun = 5f;
+        speedRun = 7f;
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rigidBody = animator.GetComponent<Rigidbody2D>();

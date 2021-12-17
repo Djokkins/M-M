@@ -24,6 +24,8 @@ public class Enemy_attack : MonoBehaviour
 		{
 			colInfo.GetComponent<PlayerHealth>().TakeDamage(attackDamage);
 		}
+
+		StartCoroutine(setAttackStunDur());
 	}
 		
 	public void EnragedAttack()
@@ -32,11 +34,13 @@ public class Enemy_attack : MonoBehaviour
 		pos += transform.right * attackOffset.x;
 		pos += transform.up * attackOffset.y;
 
-		Collider2D[] colInfo = Physics2D.OverlapCircleAll(pos, attackRange, playerMask);
-		foreach (Collider2D target in colInfo)
+
+		Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, playerMask);
+		if (colInfo != null)
 		{
-			target.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
+			colInfo.GetComponent<PlayerHealth>().TakeDamage(enragedAttackDamage);
 		}
+		StartCoroutine(setEnragedStunDur());
 	}
 
 	void OnDrawGizmosSelected()
@@ -45,6 +49,16 @@ public class Enemy_attack : MonoBehaviour
 		pos += transform.right * attackOffset.x;
 		pos += transform.up * attackOffset.y;
 
+		
 		Gizmos.DrawWireSphere(pos, attackRange);
 	}	
+
+	IEnumerator setAttackStunDur()
+    {
+		yield return new WaitForSeconds(.3f);
+    }
+	IEnumerator setEnragedStunDur()
+	{
+		yield return new WaitForSeconds(1.3f);
+	}
 }

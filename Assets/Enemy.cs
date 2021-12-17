@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     private float attackRange;
 
     private bool isFlipped;
+    private float stunDR;
     public float maxHealth;
     float currentHealth;
     // Start is called before the first frame update
@@ -26,13 +27,25 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-        animator.SetTrigger("gotHit");
+        if (stunDR < 1f)
+        {
+            animator.SetTrigger("gotHit");
+            animator.ResetTrigger("Attack1");
+            animator.ResetTrigger("Attack2");
+            stunDR += .5f;
+        }
+        else
+        {
+            stunDR = 0f;
+        }
 
         //play hurt animation
 
-        if(currentHealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
+            animator.ResetTrigger("Attack1");
+            animator.ResetTrigger("Attack2");
         }
     }
 
@@ -61,17 +74,14 @@ public class Enemy : MonoBehaviour
         Debug.Log("Enemy Died");
         //die animation
         animator.SetBool("isDead", true);
-
         //disable enemy
+
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
+
     }
     public float getCurrentHealth()
     {
         return currentHealth;
-    }
-    public float getAttackRange()
-    {
-        return attackRange;
     }
 }
