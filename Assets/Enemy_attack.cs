@@ -39,11 +39,6 @@ public class Enemy_attack : MonoBehaviour
 		}
 	}
 
-	public  void setAttackOffset(Vector3 aOffset)
-    {
-		attackOffset = aOffset;
-    }
-
 	void OnDrawGizmosSelected()
 	{
 		Vector3 pos = transform.position;

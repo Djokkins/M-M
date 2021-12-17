@@ -5,8 +5,8 @@ using UnityEngine;
 public class enemy_run : StateMachineBehaviour
 {
     Transform player;
-    Rigidbody2D rb;
-    Enemy enemy;
+    Rigidbody2D rigidBody;
+    Enemy enemyRun;
 
     private float speed;
     //onstateenter is called when a transition starts and the state machine starts to evaluate this state
@@ -15,21 +15,23 @@ public class enemy_run : StateMachineBehaviour
         speed = 2f;
         
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        rb = animator.GetComponent<Rigidbody2D>();
-        enemy = animator.GetComponent<Enemy>();
+        rigidBody = animator.GetComponent<Rigidbody2D>();
+        enemyRun = animator.GetComponent<Enemy>();
 
     }
 
     //onstateupdate is called on each update frame between onstateenter and onstateexit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateinfo, int layerindex)
     {
-        enemy.ChasePlayer();
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
+        enemyRun.ChasePlayer();
+        Vector2 target = new Vector2(player.position.x, rigidBody.position.y);
+        Vector2 newPos = Vector2.MoveTowards(rigidBody.position, target, speed * Time.fixedDeltaTime);
+        rigidBody.MovePosition(newPos);
 
-        if (Vector2.Distance(player.position, rb.position) <= 5f)
+        if ((Vector2.Distance(player.position, rigidBody.position) <= 5f) && animator.GetBool("isRunning"))
         {
+            Debug.Log("We shouldnt be here");
+            rigidBody.MovePosition(rigidBody.position);
             animator.SetTrigger("Attack2");
         }
     }
@@ -39,5 +41,6 @@ public class enemy_run : StateMachineBehaviour
     {
         speed = 0f;
         animator.ResetTrigger("Attack2");
+        animator.SetBool("isRunning", false);
     }
 }
