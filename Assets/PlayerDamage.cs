@@ -30,11 +30,12 @@ public class PlayerDamage : MonoBehaviour
     public void Attack1()
     {
         totalDamage = attack1Damage * dmgMult;
-
+        
         if (Time.time >= nextAttack)
         {
             //Animation for slow attack
             animator.SetTrigger("Attack1");
+            FindObjectOfType<AudioManager>().Play("playerattack1");
             Debug.Log("We attack1 from the new playerdamage script");
 
             //Detect enemies in range
@@ -43,6 +44,7 @@ public class PlayerDamage : MonoBehaviour
             foreach (Collider2D enemy in enemiesHit)
             {
                 enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
+                FindObjectOfType<AudioManager>().Play("playerattack1_hit");
                 Debug.Log("We hit" + enemy.name);
             }
             nextAttack = Time.time + (1f / attackSpeed1);
