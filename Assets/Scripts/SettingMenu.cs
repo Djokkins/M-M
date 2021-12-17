@@ -9,18 +9,31 @@ public class SettingMenu : MonoBehaviour
 {
     Resolution[] resolutions;
     
-    public Dropdown resolutionDropdown;
+    public Toggle fullscreenToggle;
+    public Slider audioLevel;
+    public AudioMixer audioMixer;
+    public TMP_Dropdown resDropdown;
 
     private void Start()
     {
+        bool fullscreen = Screen.fullScreen;
+        fullscreenToggle.isOn = fullscreen;
+        bool res = audioMixer.GetFloat("masterVolume", out float soundvalue);
+        if (res) {
+            audioLevel.value = soundvalue;
+        }
+            
+
 
         //Get the list of resolutions and add it to our dropdown menu
         resolutions = Screen.resolutions;
-        resolutionDropdown.ClearOptions();
+        resDropdown.ClearOptions();
+
 
         //Make the list of resolutions as nice strings for the dropdown
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
+
         for(int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
@@ -33,9 +46,9 @@ public class SettingMenu : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        resDropdown.AddOptions(options);
+        resDropdown.value = currentResolutionIndex;
+        resDropdown.RefreshShownValue();
     }
 
     public void setResolution(int index)
@@ -43,11 +56,14 @@ public class SettingMenu : MonoBehaviour
         Screen.SetResolution(resolutions[index].width, resolutions[index].height, Screen.fullScreen);
     }
 
-    public AudioMixer audioMixer;
+    
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("masterVolume", volume);
+
     }
+
+
 
     public void SetFullscreen(bool toggle)
     {

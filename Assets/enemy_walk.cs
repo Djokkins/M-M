@@ -33,7 +33,7 @@ public class enemy_walk : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy.ChasePlayer();
-        Debug.Log(Vector2.Distance(player.position, rb.position));
+        //Debug.Log(Vector2.Distance(player.position, rb.position));
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
