@@ -7,9 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public Animator animator;
     public Transform player;
-
-    //range variable
-    private float attackRange;
+    public HealthBarBoss healthBar;
 
     private bool isFlipped;
     private float stunDR;
@@ -18,15 +16,17 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        attackRange = 1.5f;
         isFlipped = false;
         maxHealth = 100f;
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         if (stunDR < 1f)
         {
             animator.SetTrigger("gotHit");

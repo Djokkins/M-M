@@ -7,32 +7,32 @@ public class PlayerHealth : MonoBehaviour
 {
 	public Animator animator;
 	private float maxHealth = 100;
-	public float cHealth;
+	private float cHealth;
 	public float resistance = 0;
+	public HealthBarPlayer healthBar;
 
-	public GameObject deathEffect;
 	void Start()
 	{
 		cHealth = maxHealth;
+		healthBar.SetMaxHealth(maxHealth);
+		healthBar.SetHealth(cHealth);
+
 	}
 
 	public void TakeDamage(float damage)
 	{
-		
 		cHealth -= damage - CalcResistance();
-		animator.SetTrigger("gotHit");
-		if (cHealth <= 0)
-		{
-			Die();
-		}
-		else
-		{
-			StartCoroutine(setGotHit());
-		}
+		healthBar.SetHealth(cHealth);
+		StartCoroutine(setGotHit());
 	}
 
     IEnumerator setGotHit()
     {
+		animator.SetTrigger("gotHit");
+		if(cHealth <= 0)
+        {
+			Die();
+        }
 		yield return new WaitForSeconds(0.3f);
 	}
 
@@ -47,5 +47,15 @@ public class PlayerHealth : MonoBehaviour
     {
 		resistance = 0;// + take input from armor 
 		return resistance;
+    }
+
+	public float getMaxHealth()
+    {
+		return maxHealth;
+    }
+
+	public float getCurrentHealth()
+    {
+		return cHealth;
     }
 }

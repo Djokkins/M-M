@@ -32,7 +32,6 @@ public class enemy_run : StateMachineBehaviour
         if ((Vector2.Distance(player.position, rigidBody.position) <= 5f) && animator.GetBool("isRunning"))
         {
             speedRun = 0f;
-            Debug.Log("We shouldnt be here");
             animator.SetTrigger("Attack2");
         }
     }

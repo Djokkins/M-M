@@ -13,13 +13,13 @@ public class PlayerDamage : MonoBehaviour
 
     public Transform attackPoint2;
     public float attackRange2 = 0.6f;
-    private float attackSpeed2 = 2f;
-    float nextAttack = 0f;
+    private float attackSpeed2 = 9f;//10 makes  Attack 2 more dps, and 9 makes attack 1 higher dps, theyre quite close at 6,40 and 6,45
+    public float nextAttack = 0f;
 
     //ad variables
     private float dmgMult = 1f;
     private float attack1Damage = 9;
-    private float attack2Damage = 5;
+    private float attack2Damage = 6;
     private float totalDamage;
 
     //animator and layermask
@@ -33,8 +33,6 @@ public class PlayerDamage : MonoBehaviour
         
         if (Time.time >= nextAttack)
         {
-            //Animation for slow attack
-            animator.SetTrigger("Attack1");
             FindObjectOfType<AudioManager>().Play("playerattack1");
             Debug.Log("We attack1 from the new playerdamage script");
 
@@ -47,7 +45,11 @@ public class PlayerDamage : MonoBehaviour
                 FindObjectOfType<AudioManager>().Play("playerattack1_hit");
                 Debug.Log("We hit" + enemy.name);
             }
-            nextAttack = Time.time + (1f / attackSpeed1);
+            nextAttack = Time.time + (1f + (1f / attackSpeed1));
+        }
+        else
+        {
+            return;
         }
         }
 
@@ -58,9 +60,6 @@ public class PlayerDamage : MonoBehaviour
 
         if (Time.time >= nextAttack)
         {
-            //Animation for quick attack
-            animator.SetTrigger("Attack2");
-
             //Detect enemies in range
             Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
             Debug.Log("We attack2 from the new playerdamage script");
@@ -72,9 +71,14 @@ public class PlayerDamage : MonoBehaviour
                 enemy.GetComponent<Enemy>().TakeDamage(totalDamage);
                 Debug.Log("We hit" + enemy.name);
             }
+            nextAttack = Time.time + (1f + (1f / attackSpeed2));
+        }
+        else
+        {
+            return;
         }
 
-            nextAttack = Time.time + (1f / attackSpeed2);
+
         }
     void OnDrawGizmosSelected()
     {
