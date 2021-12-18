@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
         _min = Bounds.bounds.min;
         _max = Bounds.bounds.max;
         isFollowing = true;
+        FindObjectOfType<AudioManager>().Play("menusound");
     }
 
     public void Update()

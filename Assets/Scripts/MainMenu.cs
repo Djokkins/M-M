@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             cutScenePlayed = true;
-            FindObjectOfType<AudioManager>().Play("introsound");
+           // FindObjectOfType<AudioManager>().Play("introsound");
         }
     }
     
