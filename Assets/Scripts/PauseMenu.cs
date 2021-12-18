@@ -66,7 +66,6 @@ public class PauseMenu : MonoBehaviour
     {
         PauseMenuUI.SetActive(true);
         SureMenuUI.SetActive(false);
-        Debug.Log("this gets called.");
         SettingsMenuUI.SetActive(false);
     }
 
