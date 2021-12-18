@@ -16,13 +16,16 @@ public class SettingMenu : MonoBehaviour
 
     private void Start()
     {
+        
+
         bool fullscreen = Screen.fullScreen;
         fullscreenToggle.isOn = fullscreen;
-        bool res = audioMixer.GetFloat("masterVolume", out float soundvalue);
-        if (res) {
-            audioLevel.value = soundvalue;
-        }
-            
+
+        float storedVolume = PlayerPrefs.GetFloat("StoredVolume", 0f);
+        audioLevel.value = storedVolume;
+        audioMixer.SetFloat("masterVolume", storedVolume);
+
+
 
 
         //Get the list of resolutions and add it to our dropdown menu
@@ -53,6 +56,7 @@ public class SettingMenu : MonoBehaviour
 
     public void setResolution(int index)
     {
+        Debug.Log("We get into setResolution");
         Screen.SetResolution(resolutions[index].width, resolutions[index].height, Screen.fullScreen);
     }
 
@@ -60,13 +64,14 @@ public class SettingMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("masterVolume", volume);
-
+        PlayerPrefs.SetFloat("StoredVolume", volume);
     }
 
 
 
     public void SetFullscreen(bool toggle)
     {
+        Debug.Log("We get into setFullScreen");
         Screen.fullScreen = toggle;
     }
 
