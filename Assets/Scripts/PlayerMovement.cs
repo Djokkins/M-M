@@ -4,73 +4,44 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    //Creating variables
+    //Controller and animator
     public CharacterController2D controller;
     public Animator animator;
 
-    private float dmgMult;
-    private float attack1Damage;
-    private float attack2Damage;
 
+    //movement variables
     private float runSpeed;
     private float rollSpeed;
     float horizontalMove;
     bool jump;
     bool isRolling;
     bool isJumping;
-    private bool attacking;
     private bool run;
     private float direction;
 
-    private float aSpeedMult;
-    public Transform attackPoint1;
-    private float attackRange1;
-    private float attackSpeed1;
-
-    public Transform attackPoint2;
-    private float attackRange2;
-    private float attackSpeed2;
-
-    float nextAttack;
-    
+    //Resource externalization for damage
+    PlayerDamage damage;
+  
     public LayerMask enemyLayers;
 
-    private int Health;
-    private int count_debug = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        //initializing variables
-        //ad variables
-        dmgMult = 1f;
-        attack1Damage = 32 * dmgMult;
-        attack2Damage = 18 * dmgMult;
-
-        //as variables
-        aSpeedMult = 1f;
-        attackRange1 = 0.5f * aSpeedMult;
-        attackSpeed1 = 1.5f * aSpeedMult;
-
-        attackRange2 = 0.6f;
-        attackSpeed2 = 2f;
-
-        nextAttack = 0f;
-
-        //movement variables
         runSpeed = 100f;
         rollSpeed = 450f;
         horizontalMove = 0f;
         jump = false;
         isRolling = false;
-        attacking = false;
         run = false;
         isJumping = false;
         direction = 1;
+        isJumping = false;
 
+        damage = animator.GetComponent<PlayerDamage>();
 
-
-
-        // Health = FindObjectOfType<Stats>().Health;
 
 }
     
@@ -132,38 +103,37 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
         {
             jump = true;
             animator.SetBool("isJumping", true);
             isJumping = true;
         }
 
-        
+
         //if (Input.GetButtonDown("Crouch"))
         //{ crouch = true; }
 
 
 
-        if (Time.time >= nextAttack && !animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping && Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
         {
-            if (Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
-            {
-                Attack1();
-                nextAttack = Time.time + (1f / attackSpeed1);
-            }
+            //damage.Attack1(); this doesnt work as we are triggering the animator from inside the function and thus we cannot time the damage with the animation
+            //we want to call animator.setTrigger("Attack1") and then call the attack function using an event inside the animation itself
+            animator.SetTrigger("Attack1");
 
-            if (Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
-            {
-                Attack2();
-                nextAttack = Time.time + (1f / attackSpeed2);
-            }
+        }
+            
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping && Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
+        {
+            //damage.Attack2();
+            animator.SetTrigger("Attack2");
         }
 
         
 
         
-        if (Input.GetKeyDown(KeyCode.C) && !animator.GetCurrentAnimatorStateInfo(0).IsName("jump"))
+        if (Input.GetKeyDown(KeyCode.C) && !animator.GetCurrentAnimatorStateInfo(0).IsName("jump") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
         {
             isRolling = true;
             animator.SetTrigger("isRolling");
@@ -175,40 +145,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
-
-    private void Attack1()
-    {
-        //Animation for slow attack
-        animator.SetTrigger("Attack1");
-
-        //Detect enemies in range
-        Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(attackPoint1.position, attackRange1, enemyLayers);
-        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
-        foreach (Collider2D enemy in enemiesHit)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attack1Damage);
-            Debug.Log("We hit" + enemy.name);
-        }
-    }
-    public void Attack2()
-    {
-        //Animation for quick attack
-        animator.SetTrigger("Attack2");
-
-
-        //Detect enemies in range
-        Collider2D [] enemiesHit = Physics2D.OverlapCircleAll(attackPoint2.position, attackRange2, enemyLayers);
-        Debug.Log("We attack" + count_debug);
-        count_debug++;
-        //Damage enemies -- this allows us to scale the game if we want more enemies in a single fight.
-        foreach (Collider2D enemy in enemiesHit)
-        {
-            enemy.GetComponent<Enemy>().TakeDamage(attack2Damage);
-            Debug.Log("We hit" + enemy.name);
-            }
-    }
-
-
     public void onLanding()
     {
         animator.SetBool("isJumping", false);

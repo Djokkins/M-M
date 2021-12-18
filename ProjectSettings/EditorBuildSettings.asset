@@ -8,16 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: a31d0911db8c7f44ead0d9233c59a0f5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/IntroCutScene.unity
     guid: e5db361df938f8c45822ae721d259ca1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainHub.unity
     guid: 9a364fdc9b11fa14485c26615d934978
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/FightArena.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/ItemShop.unity
     guid: 64b98a261d0a88d4b8785efa37beca0b
   m_configObjects: {}

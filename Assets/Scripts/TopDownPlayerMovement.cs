@@ -65,6 +65,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     void FixedUpdate() 
     {
         Move();
+        FindObjectOfType<AudioManager>().Play("introsound");
     }
 
 
