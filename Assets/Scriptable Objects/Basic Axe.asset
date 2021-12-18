@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
   m_Name: Basic Axe
   m_EditorClassIdentifier: 
+  prefab: {fileID: 3921749365964212331, guid: e08c1e3ba4097404a95bf41fc1e24f9d, type: 3}
   id: 
   title: Basic Axe
-  description: A standard woodcutting axr
+  description: A standard woodcutting axe
   baseCost: 50
   itemImg: {fileID: 21300000, guid: 1ecb87f848c96684fab0354a6a4336dd, type: 3}
-  prefab: {fileID: 0}

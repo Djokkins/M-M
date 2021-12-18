@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
   m_Name: Cloth Armor
   m_EditorClassIdentifier: 
+  object_ref: {fileID: 0}
+  prefab: {fileID: 5582214194753240757, guid: c765d57369b77af498d5c15db89fbdfc, type: 3}
+  id: 
   title: Cloth Armor
   description: Basic armor for a bit of protection
   baseCost: 60
