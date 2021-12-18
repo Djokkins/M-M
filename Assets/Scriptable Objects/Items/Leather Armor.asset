@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c5a829285ee7854eb5bf2e3ce51acab, type: 3}
   m_Name: Leather Armor
   m_EditorClassIdentifier: 
-  object_ref: {fileID: 0}
-  prefab: {fileID: 8443292211649327130, guid: 003cd3e995cd8b546bb16fccc076b7cf, type: 3}
-  id: 
-  title: Leather Armor
+  prefab: {fileID: 0}
+  type: 1
   description: Tougher armor that will withstand harder blows
-  baseCost: 220
-  itemImg: {fileID: 0}
+  Resistance: 0.3

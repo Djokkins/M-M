@@ -134,6 +134,50 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1959607028129251854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3041692865812205370}
+  - component: {fileID: 3854138330645780457}
+  m_Layer: 0
+  m_Name: Item_ref
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3041692865812205370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959607028129251854}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 99.00867, y: -37.932205, z: -592.8999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6544471188585732269}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3854138330645780457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959607028129251854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46893cbb935d3dc4b8d5b65510c6fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
 --- !u!1 &2891643128035878936
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PurchaseAHHHH
+  m_text: Purchase
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e65c55ec27a2afd41b1fa94bd2437cb0, type: 2}
   m_sharedMaterial: {fileID: -8393981497832777791, guid: e65c55ec27a2afd41b1fa94bd2437cb0, type: 2}
@@ -767,6 +811,7 @@ RectTransform:
   - {fileID: 4088195317233974205}
   - {fileID: 7208912976898789764}
   - {fileID: 5246764707761683346}
+  - {fileID: 3041692865812205370}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -825,6 +870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ee1264fefd08649b0cbb65978e4a51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: {fileID: 0}
   titleTxt: {fileID: 3971416529851038900}
   descriptionTxt: {fileID: 7477571304865407531}
   costTxt: {fileID: 2350974792173828132}

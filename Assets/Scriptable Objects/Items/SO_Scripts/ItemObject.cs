@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemObject : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public enum ItemType{
+    Weapon,
+    Armor,
+    Misc
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+// [CreateAssetMenu(fileName = "ItemObject", menuName = "Mead_and_Mjolnir/ItemObject", order = 0)]
+public abstract class ItemObject : ScriptableObject {
+    public GameObject prefab;
+    public ItemType item;
+
+    [TextArea(15, 20)] // This links to the description for the unity UI textbox size
+    public string description; 
+
 }

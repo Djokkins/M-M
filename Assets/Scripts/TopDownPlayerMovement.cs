@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TopDownPlayerMovement : MonoBehaviour
 {
@@ -17,11 +19,17 @@ public class TopDownPlayerMovement : MonoBehaviour
     private float rotationAngle = 0f;
 
 
+    void Start() 
+    {
+        // Getting a reference to the Inventory UI
+        // InventoryPopUp = GameObject.Find("/Inventory_Canvas/InventoryPopUp");
+        // InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy); // It has to be active in order to get a ref, so we set it to false on start
+    }
     // Update is called once per frame
     void Update()
     {
         ProcessInputs();
-        Debug.Log("Were in update");
+        // Debug.Log("Were in update");
         
         float speedx = Input.GetAxisRaw("Horizontal");
         float speedy = Input.GetAxisRaw("Vertical");
@@ -42,6 +50,13 @@ public class TopDownPlayerMovement : MonoBehaviour
         {
             Debug.Log("'e' was pressed");
             CheckInteraction();
+        }
+
+        // Toggle Inventory
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy);
+            // Debug.Log("InventoryPopUp is set to: " + InventoryPopUp.activeInHierarchy);
         }
 
     }
@@ -108,5 +123,9 @@ public class TopDownPlayerMovement : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    // Not implemented but used for text pop-up when you can enter a building - NudNud
+    // public void OnTriggerEnter(Collider other) {
+    //     var item = other.GetComponent<SOMETHING>();
+    // }
 }
 

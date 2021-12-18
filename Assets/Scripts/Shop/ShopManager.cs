@@ -14,6 +14,10 @@ public class ShopManager : MonoBehaviour
     public ShopTemplate[] shopPanels;   // Shop template script
     public Button[] myPurchaseBtns;
 
+    public InventoryObject userInventory;
+    public player_inventory PlayerInventory;
+    public GameObject InventoryPopUp;
+
     private string CoinSprite = "<sprite=0>"; // The coin sprite for the text
 
     // public StaticData staticData;
@@ -21,25 +25,41 @@ public class ShopManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // GameObject gObject = GameObject.Find("StaticData");
-        // staticData = gObject.GetComponent<StaticData>();
-
         for (int i = 0; i < shopItemSO.Length; i++)
             shopPanelsGO[i].SetActive(true);
         LoadPanels();
         UpdateCoinUI();
         CheckPurchaseable();
+
+        // Getting a reference to the inventory scriptable object
+        PlayerInventory = GameObject.Find("/PlayerInventory").GetComponent<player_inventory>();
+
+        // Getting a reference to the Inventory UI
+        InventoryPopUp = GameObject.Find("/Inventory_Canvas/InventoryPopUp");
+        InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy); // It has to be active in order to get a ref, so we set it to false on start
+
+        Debug.Log("Root object: " + InventoryPopUp.ToString());
+
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy);
+            Debug.Log("InventoryPopUp is set to: " + InventoryPopUp.activeInHierarchy);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LogItAll();
+        }
     }
 
     public void AddCoins()
     {
-        coins += 10;
+        coins += 500;
         UpdateCoinUI();
         CheckPurchaseable();
     }
@@ -64,6 +84,10 @@ public class ShopManager : MonoBehaviour
             CheckPurchaseable();
             Debug.Log("Purchased item: " + shopItemSO[btnNo].title);
 
+            PlayerInventory.PurchaseItem(shopItemSO[btnNo]);
+            // GameObject.find( shopItemSO[i].object_ref.description;
+
+
             PlayerPrefs.SetInt("PlayerHealth", (PlayerPrefs.GetInt("PlayerHealth") + 10));
         }
     }
@@ -80,7 +104,7 @@ public class ShopManager : MonoBehaviour
     }
 
     private void UpdateCoinUI(){
-        coinUI.text = "Coins: " + coins.ToString() + CoinSprite;
+        coinUI.text = "Coins: " + coins.ToString("n0") + CoinSprite;
     }
 
 
@@ -88,5 +112,15 @@ public class ShopManager : MonoBehaviour
     public void BackToHub()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    }
+
+
+    private void LogItAll()
+    {
+         Debug.Log("Your inventory consists of: ");
+        for (int i = 0; i < PlayerInventory.inventory.Container.Count; i++)
+        {
+            Debug.Log(PlayerInventory.inventory.Container[i].amount + " of " + PlayerInventory.inventory.Container[i].item.title);
+        }
     }
 }
