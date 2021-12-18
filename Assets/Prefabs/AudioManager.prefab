@@ -54,3 +54,18 @@ MonoBehaviour:
     volume: 0.29
     pitch: 1
     source: {fileID: 0}
+  - name: menusound
+    clip: {fileID: 8300000, guid: 80844cbfa27ab2f4c9a4edb730848e87, type: 3}
+    volume: 0.29
+    pitch: 1
+    source: {fileID: 0}
+  - name: battlesound
+    clip: {fileID: 8300000, guid: 484b54d129bb7c7439c2a3ce9253f4e8, type: 3}
+    volume: 0.29
+    pitch: 1
+    source: {fileID: 0}
+  - name: mainhubsound
+    clip: {fileID: 8300000, guid: add6bc098fefa7a40b838bae71a95ab7, type: 3}
+    volume: 0.29
+    pitch: 1
+    source: {fileID: 0}
