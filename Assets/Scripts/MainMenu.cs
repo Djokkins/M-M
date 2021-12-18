@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
     // 'PLAY' button to enter the game
     private bool cutScenePlayed;
+    public Animator transition;
+    public float transitiontime = 1f;
 
     public void Start()
     {
@@ -17,6 +19,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             cutScenePlayed = true;
+            FindObjectOfType<AudioManager>().Play("introsound");
         }
     }
     
@@ -26,15 +29,21 @@ public class MainMenu : MonoBehaviour
         Debug.Log("THis is a test");
         if (cutScenePlayed)
         {
-            SceneManager.LoadScene("MainHub");
+            StartCoroutine(LoadLevel("MainHub"));
             Debug.Log("Just Some change");
         }
 
         else
         {
-            SceneManager.LoadScene("IntroCutScene");
+            StartCoroutine(LoadLevel("IntroCutScene"));
             cutScenePlayed = true;
         }
+    }
+
+   IEnumerator LoadLevel (string scenename){
+        transition.SetTrigger("StartLevelChange");
+        yield return new WaitForSeconds(transitiontime);
+        SceneManager.LoadScene(scenename);
     }
 
     // 'QUIT' button to exit the game

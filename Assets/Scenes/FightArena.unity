@@ -5174,6 +5174,11 @@ MonoBehaviour:
     volume: 0.29
     pitch: 1
     source: {fileID: 0}
+  - name: battlesound
+    clip: {fileID: 8300000, guid: 484b54d129bb7c7439c2a3ce9253f4e8, type: 3}
+    volume: 0.29
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &1958956261
 Transform:
   m_ObjectHideFlags: 0
