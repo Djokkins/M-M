@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         popUpIndex = 0;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     // Update is called once per frame
