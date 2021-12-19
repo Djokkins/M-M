@@ -619,8 +619,17 @@ PolygonCollider2D:
       - {x: 4.4968095, y: -3.1447525}
       - {x: 3.9372363, y: -1.6982474}
       - {x: 4.1233597, y: -0.529603}
-      - {x: 1.5098295, y: 2.1483836}
-      - {x: 3.9725628, y: 3.5187075}
+      - {x: 2.5989857, y: 0.6265619}
+      - {x: 2.9109974, y: -0.109790325}
+      - {x: 2.0006905, y: -0.29153633}
+      - {x: 0.8919692, y: -0.5696602}
+      - {x: -0.0016169548, y: -0.174119}
+      - {x: 0.13602924, y: 1.4369516}
+      - {x: 4.8557196, y: 4.3528}
+      - {x: 6.9786544, y: 3.4787502}
+      - {x: 6.3157406, y: 2.776817}
+      - {x: 5.6176114, y: 2.24575}
+      - {x: 5.075935, y: 2.221048}
       - {x: 4.31696, y: 2.3631535}
       - {x: 5.342408, y: 0.9593775}
       - {x: 6.4578433, y: 0.8060744}
@@ -2017,7 +2026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &468916595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7090,8 +7099,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50.1501}
-  m_SizeDelta: {x: 0, y: 100.3002}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943404380
 MonoBehaviour:
