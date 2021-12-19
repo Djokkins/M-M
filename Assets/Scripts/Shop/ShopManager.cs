@@ -36,12 +36,9 @@ public class ShopManager : MonoBehaviour
 
         // Getting a reference to the Inventory UI
         InventoryPopUp = GameObject.Find("/Inventory_Canvas/InventoryPopUp");
-        InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy); // It has to be active in order to get a ref, so we set it to false on start
-
+        InventoryPopUp.SetActive(!InventoryPopUp.activeInHierarchy); // It has to be active in order to get a ref, so we set it to false on starts
 
         CheckPurchaseable();
-
-        Debug.Log("Root object: " + InventoryPopUp.ToString());
 
     }
 
@@ -86,16 +83,11 @@ public class ShopManager : MonoBehaviour
             {
                 if(PlayerInventory.inventory.Container[j].item == shopItemSO[i] && !shopItemSO[i].isStackable)
                 {
-                    // Debug.Log("You have: " + shopItemSO[i].title);
                     shopPanels[i].btnTxt.text = "OWNED";
                     myPurchaseBtns[i].interactable = false;
-                }
-                    
+                }    
             }
         }
-
-
-        // shopPanels[i].btnTxt.text = "3.ToString()";
     }
 
     public void PurchaseItem(int btnNo)
@@ -105,13 +97,10 @@ public class ShopManager : MonoBehaviour
             coins = coins - shopItemSO[btnNo].baseCost;     // Not messing with '-=' as that is some predefined subscriber pattern shit
             UpdateCoinUI();
             
-            Debug.Log("Purchased item: " + shopItemSO[btnNo].itemImg);
-
+            Debug.Log("Sprite of item: " + shopItemSO[btnNo].itemImg);
             PlayerInventory.PurchaseItem(shopItemSO[btnNo]);
-            // GameObject.find( shopItemSO[i].object_ref.description;
 
             CheckPurchaseable();
-            // PlayerPrefs.SetInt("PlayerHealth", (PlayerPrefs.GetInt("PlayerHealth") + 10));
         }
     }
 
@@ -123,7 +112,12 @@ public class ShopManager : MonoBehaviour
             shopPanels[i].titleTxt.text         = shopItemSO[i].title;
             shopPanels[i].descriptionTxt.text   = shopItemSO[i].description;
             shopPanels[i].costTxt.text          = shopItemSO[i].baseCost.ToString() + COIN_SPRITE_ID;
-            shopPanels[i].itemImg               = shopItemSO[i].itemImg;
+
+
+            // NEVER GOT THIS TO WORK
+            // Debug.Log("Item " + i + " has panel img: " + shopPanels[i].itemImg + " and itemSO sprite " + shopItemSO[i].itemImg);
+            // shopPanels[i].itemImg.sprite        = shopItemSO[i].itemImg;
+            //  shopPanels[i].spriteRenderer.sprite = shopItemSO[i].itemImg;
         }
     }
 

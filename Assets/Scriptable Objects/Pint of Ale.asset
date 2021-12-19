@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pint of Ale
   m_EditorClassIdentifier: 
   prefab: {fileID: 2560742657014923142, guid: 09e230e8e90e3ea4aae804ee85afe164, type: 3}
-  id: 
   title: Pint Of Ale
   description: A drink that increases strenght but reduces speed
   baseCost: 25
   isStackable: 1
   itemImg: {fileID: 0}
+  itemType: 2

@@ -7,7 +7,7 @@ public class MiscObject : ItemObject
 {
     public float idk;
     public void Awake(){
-        item = ItemType.Misc;
+        item = OldType.Misc;
     }
 
 }

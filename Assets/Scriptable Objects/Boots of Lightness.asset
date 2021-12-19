@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966530c83c130b645afe1355fd0dffbb, type: 3}
   m_Name: Boots of Lightness
   m_EditorClassIdentifier: 
-  object_ref: {fileID: 0}
   prefab: {fileID: 5899124824638358249, guid: 65fd722a3a240c3458f129bad7c44c20, type: 3}
-  id: 
   title: Boots of Lightness
   description: Will make you light on your feet and jump higher
   baseCost: 80
+  isStackable: 0
   itemImg: {fileID: 0}
+  itemType: 3

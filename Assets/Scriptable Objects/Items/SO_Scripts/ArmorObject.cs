@@ -7,7 +7,7 @@ public class ArmorObject : ItemObject
 {
     public float Resistance;
     public void Awake(){
-        item = ItemType.Armor;
+        item = OldType.Armor;
     }
 
 }

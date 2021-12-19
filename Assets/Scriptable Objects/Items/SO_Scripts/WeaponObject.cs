@@ -9,6 +9,6 @@ public class WeaponObject : ItemObject
     public float AttackSpeed;
     // public float Range;
     public void Awake() {
-        item = ItemType.Weapon;
+        item = OldType.Weapon;
     }
 }

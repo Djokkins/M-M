@@ -7,6 +7,7 @@ using UnityEngine;
 public class player_inventory : MonoBehaviour
 {
     public InventoryObject inventory;
+    public PlayerLoadout loadout;
 
 
     public void PurchaseItem(ItemSO item){
@@ -22,4 +23,13 @@ public class player_inventory : MonoBehaviour
     private void OnApplicationQuit() {
         inventory.Container.Clear();
     }
+}
+
+
+[System.Serializable]
+public class PlayerLoadout
+{
+    public ItemSO weapon;
+    public ItemSO armor;
+    public ItemSO boots;
 }
