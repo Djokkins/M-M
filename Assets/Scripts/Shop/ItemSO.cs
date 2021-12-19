@@ -13,6 +13,8 @@ public class ItemSO : ScriptableObject
     public string description;
     public int baseCost; 
 
+    public bool isStackable;
+
     public Sprite itemImg;   
 
     
