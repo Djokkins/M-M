@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1") && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack2"))
         {
             jump = true;
+            FindObjectOfType<AudioManager>().Play("playerjump");
             animator.SetBool("isJumping", true);
             isJumping = true;
         }
@@ -116,17 +117,19 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping && Input.GetKeyDown(KeyCode.K) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && 
+            !isJumping && Input.GetKeyDown(KeyCode.K) && 
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 2"))
+
         {
-            //damage.Attack1(); this doesnt work as we are triggering the animator from inside the function and thus we cannot time the damage with the animation
-            //we want to call animator.setTrigger("Attack1") and then call the attack function using an event inside the animation itself
             animator.SetTrigger("Attack1");
 
         }
             
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && !isJumping && Input.GetKeyDown(KeyCode.L) && !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName("roll") && 
+            !isJumping && Input.GetKeyDown(KeyCode.L) && 
+            !animator.GetCurrentAnimatorStateInfo(0).IsName("attack 1"))
         {
-            //damage.Attack2();
             animator.SetTrigger("Attack2");
         }
 

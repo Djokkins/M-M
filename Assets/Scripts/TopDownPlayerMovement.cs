@@ -40,6 +40,7 @@ public class TopDownPlayerMovement : MonoBehaviour
         //Debug.Log("Speed x =" + speedx + ", speed y = " + speedy);
         if (speedx != 0 || speedy != 0) { 
         animator.SetBool("isRunning", true);
+        //FindObjectOfType<AudioManager>().Play("playerwalksound"); 
         }
         else
             animator.SetBool("isRunning", false);
@@ -52,6 +53,7 @@ public class TopDownPlayerMovement : MonoBehaviour
             CheckInteraction();
         }
 
+        
         // Toggle Inventory
         if (Input.GetKeyDown(KeyCode.I))
         {
@@ -72,7 +74,7 @@ public class TopDownPlayerMovement : MonoBehaviour
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
-
+        
         
         moveDirection = new Vector2(moveX, moveY).normalized;
     }

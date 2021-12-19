@@ -86,7 +86,7 @@ public class ShopManager : MonoBehaviour
 
             PlayerInventory.PurchaseItem(shopItemSO[btnNo]);
             // GameObject.find( shopItemSO[i].object_ref.description;
-
+            FindObjectOfType<AudioManager>().Play("click");
 
             PlayerPrefs.SetInt("PlayerHealth", (PlayerPrefs.GetInt("PlayerHealth") + 10));
         }
@@ -110,7 +110,8 @@ public class ShopManager : MonoBehaviour
 
 
     public void BackToHub()
-    {
+    {   
+        FindObjectOfType<AudioManager>().Play("click");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 

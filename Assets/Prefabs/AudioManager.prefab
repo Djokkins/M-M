@@ -65,7 +65,12 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: mainhubsound
-    clip: {fileID: 8300000, guid: add6bc098fefa7a40b838bae71a95ab7, type: 3}
+    clip: {fileID: 8300000, guid: a1bf961dbb88cf948af4647dea1fcc3d, type: 3}
+    volume: 0.29
+    pitch: 1
+    source: {fileID: 0}
+  - name: click
+    clip: {fileID: 8300000, guid: c48e269619d93a94596a7f2dc5e9f562, type: 3}
     volume: 0.29
     pitch: 1
     source: {fileID: 0}

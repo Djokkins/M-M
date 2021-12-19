@@ -18,10 +18,12 @@ public class PauseMenu : MonoBehaviour
             if (isPaused)
             {
                 onResume();
+                FindObjectOfType<AudioManager>().Play("pausemenuclosesound");
             }
             else
             {
                 onPause();
+                FindObjectOfType<AudioManager>().Play("pausemenuopensound");
             }
         }
     }
@@ -31,6 +33,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        FindObjectOfType<AudioManager>().Play("click");
     
     }
 
@@ -41,18 +44,21 @@ public class PauseMenu : MonoBehaviour
         SureMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void optionsClick()
     {
         SettingsMenuUI.SetActive(true);
         PauseMenuUI.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void menuClick()
     {
         PauseMenuUI.SetActive(false);
         SureMenuUI.SetActive(true);
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void goMenu()
@@ -60,6 +66,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
+        FindObjectOfType<AudioManager>().Play("click");
     }
     
     public void goPause()
@@ -67,16 +74,17 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(true);
         SureMenuUI.SetActive(false);
         SettingsMenuUI.SetActive(false);
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void Cancel()
     {
-
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
     public void Save()
     {
-
+        FindObjectOfType<AudioManager>().Play("click");
     }
 
 

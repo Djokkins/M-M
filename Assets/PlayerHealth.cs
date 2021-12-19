@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerHealth : MonoBehaviour
 	private float cHealth;
 	public float resistance = 0;
 	public HealthBarPlayer healthBar;
+	public Animator transition;
+    public float transitiontime = 1f;
 
 	void Start()
 	{
@@ -31,16 +34,18 @@ public class PlayerHealth : MonoBehaviour
 		animator.SetTrigger("gotHit");
 		if(cHealth <= 0)
         {
-			Die();
+			StartCoroutine(Die());
         }
 		yield return new WaitForSeconds(0.3f);
 	}
 
-    void Die()
+    IEnumerator Die()
 	{
 		animator.SetBool("isDead", true);
 		GetComponent<Collider2D>().enabled = false;
 		this.enabled = false;
+		SceneManager.LoadScene("MainHub");
+		yield return new WaitForSeconds(3f);
 	}
 
 	private float CalcResistance()
@@ -58,4 +63,5 @@ public class PlayerHealth : MonoBehaviour
     {
 		return cHealth;
     }
+
 }
